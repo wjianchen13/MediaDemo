@@ -36,6 +36,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".test1.ScanMp3Activity" />
+        <activity android:name=".test1.ScanMp3Activity2" />
+
+
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mediademo.test1.ScanMp3Activity;
+import com.example.mediademo.test1.ScanMp3Activity2;
 
 /**
  * 多媒体操作
@@ -21,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onTest1(View v) {
         startActivity(new Intent(this, ScanMp3Activity.class));
+    }
+
+    public void onTest2(View v) {
+        startActivity(new Intent(this, ScanMp3Activity2.class));
     }
 
 }

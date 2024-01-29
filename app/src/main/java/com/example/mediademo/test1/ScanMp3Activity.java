@@ -72,12 +72,12 @@ public class ScanMp3Activity extends AppCompatActivity {
         // 构建查询
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         String[] projection = {MediaStore.Audio.Media.DATA, MediaStore.Audio.Media.SIZE, MediaStore.Audio.Media.DURATION};
-        String selection = MediaStore.Audio.Media.SIZE + " > ? AND " + MediaStore.Audio.Media.DURATION + " > ?";
-        String[] selectionArgs = new String[]{"1048576", "60000"}; // 1MB = 1048576 bytes, 60 seconds = 60000 milliseconds
+//        String selection = MediaStore.Audio.Media.SIZE + " > ? AND " + MediaStore.Audio.Media.DURATION + " > ?";
+//        String[] selectionArgs = new String[]{"1048576", "60000"}; // 1MB = 1048576 bytes, 60 seconds = 60000 milliseconds
         String sortOrder = null;
 
         // 执行查询
-        Cursor cursor = getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, sortOrder);
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 int index = cursor.getColumnIndex(MediaStore.Audio.Media.DATA);

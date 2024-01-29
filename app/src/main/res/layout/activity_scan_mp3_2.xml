@@ -12,22 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="多媒体相关" />
+        android:text="扫描MP3文件，需要权限" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="扫描MP3文件"
+        android:text="开始扫描"
         android:onClick="onTest1"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="扫描某个文件夹MP3文件"
-        android:onClick="onTest2"/>
 
 </LinearLayout>
