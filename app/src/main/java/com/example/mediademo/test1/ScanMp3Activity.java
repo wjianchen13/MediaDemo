@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -72,19 +73,29 @@ public class ScanMp3Activity extends AppCompatActivity {
         // 构建查询
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         String[] projection = {MediaStore.Audio.Media.DATA, MediaStore.Audio.Media.SIZE, MediaStore.Audio.Media.DURATION};
-//        String selection = MediaStore.Audio.Media.SIZE + " > ? AND " + MediaStore.Audio.Media.DURATION + " > ?";
-//        String[] selectionArgs = new String[]{"1048576", "60000"}; // 1MB = 1048576 bytes, 60 seconds = 60000 milliseconds
+        String selection = MediaStore.Audio.Media.SIZE + " > ? AND " + MediaStore.Audio.Media.DURATION + " > ?";
+        String[] selectionArgs = new String[]{"90000", "40000"};; // 1MB = 1048576 bytes, 60 seconds = 60000 milliseconds
         String sortOrder = null;
 
         // 执行查询
-        Cursor cursor = getContentResolver().query(uri, projection, null, null, sortOrder);
+        Cursor cursor = getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
+//        Cursor cursor = getContentResolver().query(uri, null, null, null, sortOrder);
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 int index = cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
+                int index1 = cursor.getColumnIndex(MediaStore.Audio.Media.SIZE);
+                int index2 = cursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
+
                 if(index >= 0 ) {
                     String filePath = cursor.getString(index);
+                    String size = cursor.getString(index1);
+                    String duration = cursor.getString(index2);
+                    if(TextUtils.isEmpty(filePath) || filePath.endsWith(".opus")) {
+                        System.out.println("==================> error filePath: " + filePath + "  size: " + size + "  duration: " + duration);
+                        continue;
+                    }
                     mp3Files.add(filePath);
-                    System.out.println("==================> filePath: " + filePath);
+                    System.out.println("==================> filePath: " + filePath + "  size: " + size + "  duration: " + duration);
                 }
             }
             cursor.close();
